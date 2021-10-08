@@ -1,0 +1,42 @@
+language: python
+cache: pip
+
+addons:
+  apt:
+    packages:
+      - swig
+
+install:
+  - pip install tox
+
+script: tox
+
+# Deploy if all the test builds succeed
+jobs:
+  include:
+    - python: 3.6
+      env: TOXENV=py36-flask1.0
+    - python: 3.7
+      dist: xenial
+      sudo: true
+      env: TOXENV=py37-flask1.0
+    - python: 3.7
+      dist: xenial
+      sudo: true
+      env: TOXENV=flake8,isort
+    - stage: deploy
+      python: 3.7
+      dist: xenial
+      sudo: true
+      script: skip
+      deploy:
+        provider: pypi
+        user: tim_heap
+        password: $PYPI_PASSWORD
+        distribution: "sdist bdist_wheel"
+        on:
+          condition: $( ./setup.py --version ) == $TRAVIS_TAG
+          branch: master
+          tags: true
+
+# vim: sw=2 expandtab

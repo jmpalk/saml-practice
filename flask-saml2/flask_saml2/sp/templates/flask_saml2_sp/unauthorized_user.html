@@ -1,0 +1,8 @@
+{% extends "flask_saml2_sp/base.html" %}
+
+{% block content %}
+	<p><h1>Unauthorized User</h1></p>
+	<p><a href="{{ url_for('flask_saml2_sp.login') }}">Log in to continue</a></p>
+
+
+{% endblock content %}

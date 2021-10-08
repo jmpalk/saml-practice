@@ -1,0 +1,8 @@
+{% extends "flask_saml2_sp/base.html" %}
+
+{% block content %}
+	<p><h1>Certificate Error</h1></p>
+	<a href="{{ url_for('flask_saml2_sp.login') }}">Please login</a>
+
+
+{% endblock content %}

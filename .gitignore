@@ -1,0 +1,25 @@
+*.sw[a-z]
+*.py[oc]
+*.log
+
+*.egg-info/
+*.tox/
+
+.idea
+.env
+
+.cache
+.coverage
+
+# Python release artifacts
+flask-saml2/build/
+flask-saml2/dist/
+flask-saml2/.pytest_cache/
+flask-saml2/docs/build/
+flask-saml2/example/idp.py
+flask-saml2/example/sdp.py
+flask-saml2/example/sp2.py
+Dockerfile.idp
+Dockerfile.sp
+Dockerfile.sp2
+

@@ -1,0 +1,14 @@
+FROM python:3.6
+
+RUN mkdir /app
+COPY ./flask-saml2/ /app/flask-saml2/
+WORKDIR /app
+RUN ls /app/flask-saml2
+RUN pip3 install -e /app/flask-saml2/.
+RUN pip3 install -r /app/flask-saml2/tests/requirements.txt
+RUN cat flask-saml2/examples/idp.bas | sed "s/WWWXXXYYYZZZ/AAABBBCCCDDD/g" > flask-saml2/examples/idp.py
+RUN chmod +x flask-saml2/examples/idp.py
+
+EXPOSE 8000
+
+CMD ["flask-saml2/examples/idp.py"]
